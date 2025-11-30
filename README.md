@@ -23,6 +23,7 @@ Important configuration (top of `src/APP_Cfg.h`)
 - `MAX_CIPHER_WORDS` — buffer length for ciphertext words
 - `SEND_INTERVAL_MS` — interval between sends when in sender mode
 - `CIPHER_PREFIX`, `DECRYPTED_PREFIX` — serial text prefixes
+ - `ENABLE_CRC` — when set to `1` the sender appends a CRC-8 byte to the plaintext before encryption; receiver verifies and prints CRC status. One plaintext byte is reserved for CRC when enabled.
 
 Build & upload
 
@@ -58,6 +59,17 @@ Testing
 - Single-board manual test:
   - Upload sender or receiver firmware to one board.
   - If you have sender firmware, copy a `CIPHER ...` line from monitor, paste into the monitor's input, and press Enter while the board runs receiver firmware.
+
+CRC / Integrity check
+- This demo can optionally append a CRC-8 (polynomial 0x07) byte to the plaintext before encryption. Enable by setting `ENABLE_CRC` to `1` in `src/APP_Cfg.h`.
+- On send: the CRC byte is appended to the plaintext, then the whole buffer (plaintext+CRC) is encrypted per-byte and emitted as `CIPHER ...` words.
+- On receive: after decryption the last byte is treated as the CRC; the receiver computes CRC over the payload and prints the decrypted payload followed by either `[CRC OK]` or `[CRC FAIL]`.
+- Example receiver output with CRC enabled:
+  - `DECRYPTED: HELLO [CRC OK]`
+
+Buffer and behavior notes
+- When `ENABLE_CRC` is `1`, one byte of `MAX_MSG_LEN` is reserved for the CRC. If you need to send messages of the previous full `MAX_MSG_LEN` length, increase `MAX_MSG_LEN` by 1 or disable `ENABLE_CRC`.
+- The CRC is an educational integrity check and is not a substitute for authenticated encryption.
 
 Notes & caveats
 - This demo uses very small RSA values (n=3233). It's intentionally simple for pedagogy and cannot be used for secure communication.

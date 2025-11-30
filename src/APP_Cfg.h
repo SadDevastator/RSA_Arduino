@@ -2,7 +2,7 @@
 #define APP_CFG_H
 
 // Select device mode: set to 1 for sender, 0 for receiver
-#define MODE_SENDER 1
+#define MODE_SENDER 0
 
 // Serial settings
 #define SERIAL_BAUD 115200
@@ -19,6 +19,12 @@
 // Application-level tunables (move here so all values are centralized)
 // Maximum plaintext message length (bytes)
 #define MAX_MSG_LEN 64
+
+// Enable a small integrity checksum byte appended to plaintext before encryption.
+// When enabled, one plaintext byte is reserved for CRC. Receiver will verify
+// the CRC after decryption and print a CRC status. This keeps the demo simple
+// but demonstrates an integrity check; it is NOT cryptographically strong.
+#define ENABLE_CRC 1
 
 // Maximum ciphertext words (each word is an encrypted byte or small chunk)
 #define MAX_CIPHER_WORDS 128
