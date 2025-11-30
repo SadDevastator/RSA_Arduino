@@ -19,10 +19,10 @@ Important configuration (top of `src/APP_Cfg.h`)
 - `SERIAL_BAUD` — baud rate for `Serial`
 - `RSA_N`, `RSA_E`, `RSA_D` — demo RSA parameters (n, e, d)
 - `RSA_MESSAGE` — message the sender sends periodically
-- `APP_MAX_MSG_LEN` — buffer length for plaintext
-- `APP_MAX_CIPHER_WORDS` — buffer length for ciphertext words
-- `APP_SEND_INTERVAL_MS` — interval between sends when in sender mode
-- `APP_CIPHER_PREFIX`, `APP_DECRYPTED_PREFIX` — serial text prefixes
+- `MAX_MSG_LEN` — buffer length for plaintext
+- `MAX_CIPHER_WORDS` — buffer length for ciphertext words
+- `SEND_INTERVAL_MS` — interval between sends when in sender mode
+- `CIPHER_PREFIX`, `DECRYPTED_PREFIX` — serial text prefixes
 
 Build & upload
 
