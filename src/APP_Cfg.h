@@ -16,7 +16,6 @@
 // Message to send (sender mode). Keep short to fit demo conversion.
 #define RSA_MESSAGE "HELLO"
 
-// Application-level tunables (move here so all values are centralized)
 // Maximum plaintext message length (bytes)
 #define MAX_MSG_LEN 64
 
@@ -36,6 +35,4 @@
 #define CIPHER_PREFIX "CIPHER"
 #define DECRYPTED_PREFIX "DECRYPTED: "
 
-#endif // APP_CFG_H
-
-
+#endif

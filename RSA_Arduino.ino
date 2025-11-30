@@ -1,9 +1,11 @@
 #include "src/app/app.h"
 
-void setup() {
+void setup()
+{
     app_setup();
 }
 
-void loop() {
+void loop()
+{
     app_loop();
 }

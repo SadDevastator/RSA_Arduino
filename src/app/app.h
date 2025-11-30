@@ -4,4 +4,4 @@
 void app_setup();
 void app_loop();
 
-#endif // APP_H
+#endif
